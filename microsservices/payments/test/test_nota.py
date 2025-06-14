@@ -47,8 +47,8 @@ def main():
         finalidade_nfe='normal',
         emitente=emit
     )
-
-    # 5) Adiciona um item
+    
+    # 5) Adiciona um item (agora com todos os campos de tributação)
     nf.itens.append(ItemNota(
         n_item=1,
         codigo_produto='PROD001',
@@ -59,8 +59,20 @@ def main():
         unidade_comercial='UN',
         valor_unitario=50,
         valor_total_item=100,
-        valor_desconto=0
+        valor_desconto=0,
+        origem_mercadoria=0,
+        cst_icms='000',
+        csosn='102',
+        aliquota_icms=18.00,
+        valor_icms=18.00,
+        aliquota_ipi=0.00,
+        valor_ipi=0.00,
+        aliquota_pis=1.65,
+        valor_pis=1.65,
+        aliquota_cofins=7.60,
+        valor_cofins=7.60
     ))
+
 
     # 6) Adiciona destinatário
     nf.destinatarios.append(Destinatario(
