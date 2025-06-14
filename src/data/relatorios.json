@@ -1,0 +1,29 @@
+[
+  {
+    "obraId": "OBR123",
+    "obraNome": "Obra Shopping Norte",
+    "relatorios": [
+      {
+        "id": "r1",
+        "data": "2025-06-11T12:00:00Z",
+        "usuario": "Matheus Brugnaro",
+        "descricao": "Avanço da alvenaria no 2º andar",
+        "imagem": "https://drive/imagem.jpg"
+      },
+      {
+        "id": "r2",
+        "data": "2025-06-12T12:00:00Z",
+        "usuario": "Lucas Freires",
+        "descricao": "Término pintura dos quartos",
+        "imagem": "https://drive/imagem2.jpg"
+      },
+      {
+        "id": "r3",
+        "data": "2025-06-12T10:30:00Z",
+        "usuario": "Rodrigo Rameh",
+        "descricao": "Início instalação elétrica",
+        "imagem": "https://drive/imagem2.jpg"
+      }
+    ]
+  }
+]

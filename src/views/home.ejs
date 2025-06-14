@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Relatórios de Obras</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    form {
+      margin-bottom: 30px;
+    }
+    label {
+      margin-right: 10px;
+    }
+    input[type="text"], input[type="date"], select {
+      padding: 8px;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 8px 16px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    a {
+      margin-left: 10px;
+      text-decoration: none;
+      color: #007bff;
+    }
+    .relatorios-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .relatorio-card {
+      background-color: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .relatorio-card:hover {
+      transform: scale(1.01);
+      background-color: #f0f8ff;
+    }
+    .relatorio-header {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    .relatorio-sub {
+      color: #333;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Todos os Relatórios</h1>
+
+  <form id="filtro-form" method="get" action="/">
+    <label for="obra">Filtrar por Obra:</label>
+    <input type="text" id="obra" name="obra" value="<%= filtroObra %>" placeholder="Ex: OBR123">
+
+    <label for="dataFiltro">Filtrar por Data:</label>
+    <input type="date" id="dataFiltro" name="dataFiltro" value="<%= filtroData %>">
+
+    <label for="ordenacao">Ordenar:</label>
+    <select name="ordenacao" id="ordenacao">
+      <option value="desc" <%= ordenacao === "desc" ? "selected" : "" %>>Mais recente primeiro</option>
+      <option value="asc" <%= ordenacao === "asc" ? "selected" : "" %>>Mais antigo primeiro</option>
+    </select>
+
+    <button type="submit">Filtrar</button>
+    <a href="/">Limpar</a>
+  </form>
+
+  <div class="relatorios-container">
+    <% relatorios.forEach(r => { %>
+      <div class="relatorio-card" onclick="window.location='/obra/<%= r.obraId %>/relatorio/<%= r.id %>'">
+        <div class="relatorio-header">
+          <%= r.obraNome %> — <%= new Date(r.data).toLocaleString("pt-BR") %>
+        </div>
+        <div class="relatorio-sub">
+          <strong>Responsável:</strong> <%= r.usuario %>
+        </div>
+        <div class="relatorio-sub">
+          <strong>Descrição:</strong> <%= r.descricao %>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const selectOrdenacao = document.getElementById("ordenacao");
+      const form = document.getElementById("filtro-form");
+
+      selectOrdenacao.addEventListener("change", () => {
+        form.submit();
+      });
+    });
+  </script>
+</body>
+</html>
