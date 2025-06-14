@@ -3,7 +3,8 @@ from sqlalchemy import (
     Integer, 
     String, 
     Numeric,
-    ForeignKey
+    ForeignKey,
+    SmallInteger
 )
 
 from sqlalchemy.orm import relationship
@@ -24,6 +25,17 @@ class ItemNota(Base):
     valor_unitario = Column(Numeric(15,4))
     valor_total_item = Column(Numeric(15,4))
     valor_desconto = Column(Numeric(15,4))
+    origem_mercadoria = Column(SmallInteger)
+    cst_icms = Column(String(3))
+    csosn = Column(String(3))
+    aliquota_icms = Column(Numeric(5,2))
+    valor_icms = Column(Numeric(15,4))
+    aliquota_ipi = Column(Numeric(5,2))
+    valor_ipi = Column(Numeric(15,4))
+    aliquota_pis = Column(Numeric(5,2))
+    valor_pis = Column(Numeric(15,4))
+    aliquota_cofins = Column(Numeric(5,2))
+    valor_cofins = Column(Numeric(15,4))
 
     nota = relationship(
         "NotaFiscal", # Se relaciona com NotaFiscal
