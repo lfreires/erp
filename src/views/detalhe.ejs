@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Relatório Detalhado</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .relatorio {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+    .btn-voltar {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 10px 16px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.2s ease;
+    }
+    .btn-voltar:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="relatorio">
+    <h1>Relatório de <%= obraNome %></h1>
+    <p><strong>Data:</strong> <%= new Date(relatorio.data).toLocaleString("pt-BR") %></p>
+    <p><strong>Responsável:</strong> <%= relatorio.usuario %></p>
+    <p><strong>Descrição:</strong> <%= relatorio.descricao %></p>
+    <% if (relatorio.imagem) { %>
+      <img src="<%= relatorio.imagem %>" alt="Imagem do Relatório">
+    <% } %>
+    <br>
+    <%
+function queryParams(f) {
+  const params = [];
+  if (f.obra) params.push(`obra=${encodeURIComponent(f.obra)}`);
+  if (f.dataFiltro) params.push(`dataFiltro=${encodeURIComponent(f.dataFiltro)}`);
+  if (f.ordenacao) params.push(`ordenacao=${encodeURIComponent(f.ordenacao)}`);
+  return params.length ? '?' + params.join('&') : '';
+}
+%>
+
+<a href="/<%= queryParams(filtros) %>" class="btn-voltar">← Voltar </a>
+
+  </div>
+</body>
+</html>
